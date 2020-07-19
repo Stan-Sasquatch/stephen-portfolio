@@ -12,6 +12,7 @@ import Project from './Project';
 import Navbar from './NavBar';
 import './App.css';
 import CustomLink from './CustomLink'
+import TileGame from './TileGame'
 
 
 
@@ -48,7 +49,7 @@ function ProjectsRouter() {
   const createProject = (name) => { return <Project projectName={name} /> }
 
   const projectsArr = [
-    { name: "Project One", linkTo: "/one", component: () => { return <Project projectName={"Project One"} /> } },
+    { name: "Tile Game", linkTo: "/tilegame", component: () => { return <TileGame /> } },
     { name: "Project Two", linkTo: "/two", component: () => { return <Project projectName={"Project Two"} /> } },
     { name: "Project Three", linkTo: "/three", component: () => { return <Project projectName={"Project Three"} /> } },
     { name: "Project Test", linkTo: "/test", component: () => { return <Project projectName={"Project test"} /> } }]

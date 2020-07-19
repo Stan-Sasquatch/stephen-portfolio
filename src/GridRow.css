@@ -1,0 +1,8 @@
+ .row td.blank{
+    background-color: white
+}
+
+.row td{
+    background-color:red;
+    text-align: center;
+}

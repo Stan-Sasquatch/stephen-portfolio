@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter,
   Switch,
   Route,
   Link,
@@ -21,7 +21,7 @@ export default function App() {
 
 
   return (
-    <Router>
+    <HashRouter>
       <div>
 
         <Navbar />
@@ -39,7 +39,7 @@ export default function App() {
         </Switch>
 
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 

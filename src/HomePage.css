@@ -1,0 +1,12 @@
+img {
+    float: right;
+    padding: 5px;
+    border:30px solid green
+  }
+
+  img.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+  }
+  

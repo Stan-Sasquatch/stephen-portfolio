@@ -3,7 +3,7 @@ import Grid from './Components/Grid';
 import UserNumInput from './Components/UserNumInput'
 import GenericButton from './Components/GenericButton';
 import './CSS/TileGame.css';
-import createNewGrid from './Utils/Functions';
+import {createNewGrid,coordsExist} from './Utils/Functions';
 
 
 
@@ -51,29 +51,10 @@ class TileGame extends React.Component {
     }
 
 
-    // createNewGrid = (newRowNum, newColumnNum) => {
-    //     let newGrid = []
-    //     let current = 1
-    //     for (let row = 0; row < newRowNum; row++) {
-    //         let newRow = []
+   
 
-    //         for (let column = 0; column < newColumnNum; column++) {
-    //             if (current == newRowNum * newColumnNum) {
-    //                 newRow.push("")
-    //             }
-    //             else {
-    //                 newRow.push(current)
-    //             }
-    //             current++
-    //         }
-    //         newGrid.push(newRow)
-    //     }
-
-    //     return newGrid
-    // }
-
-    coordsExist = (coords) => {
-        return (coords[0] >= 0 && coords[0] < this.state.columns) && (coords[1] >= 0 && coords[1] < this.state.rows)
+  coordsExist=(coords,columns,rows)=> {
+        return (coords[0] >= 0 && coords[0] < columns) && (coords[1] >= 0 && coords[1] < rows)
     }
     swapRandomCoords = () => {
         let coordsArr = []
@@ -84,7 +65,7 @@ class TileGame extends React.Component {
         coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) + 1])
         coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) - 1])
 
-        coordsArr = coordsArr.filter(this.coordsExist)
+        coordsArr = coordsArr.filter((coords)=> this.coordsExist(coords,this.state.columns,this.state.rows))
 
 
         this.swapCoordsState(coordsArr[Math.floor(Math.random() * (coordsArr.length))], blankCoords)

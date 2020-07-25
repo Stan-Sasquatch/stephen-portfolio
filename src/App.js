@@ -3,7 +3,6 @@ import {
   HashRouter,
   Switch,
   Route,
-  Link,
   useRouteMatch
 } from "react-router-dom";
 import HomePage from './HomePage';
@@ -12,7 +11,8 @@ import Project from './Project';
 import Navbar from './NavBar';
 import './App.css';
 import CustomLink from './CustomLink'
-import TileGame from './TileGame'
+import TileGame from './TileGame/TileGame'
+import HookTest from './HookTest'
 
 
 
@@ -46,11 +46,11 @@ export default function App() {
 function ProjectsRouter() {
 
   let { path, url } = useRouteMatch();
-  const createProject = (name) => { return <Project projectName={name} /> }
+
 
   const projectsArr = [
     { name: "Tile Game", linkTo: "/tilegame", component: () => { return <TileGame /> } },
-    { name: "Project Two", linkTo: "/two", component: () => { return <Project projectName={"Project Two"} /> } },
+    { name: "React Hook Test: useState", linkTo: "/hooktest", component: () => { return <HookTest /> } },
     { name: "Project Three", linkTo: "/three", component: () => { return <Project projectName={"Project Three"} /> } },
     { name: "Project Test", linkTo: "/test", component: () => { return <Project projectName={"Project test"} /> } }]
 

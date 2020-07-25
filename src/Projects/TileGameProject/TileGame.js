@@ -53,9 +53,6 @@ class TileGame extends React.Component {
 
    
 
-  coordsExist=(coords,columns,rows)=> {
-        return (coords[0] >= 0 && coords[0] < columns) && (coords[1] >= 0 && coords[1] < rows)
-    }
     swapRandomCoords = () => {
         let coordsArr = []
         const blankCoords = this.findCoords("")
@@ -65,7 +62,7 @@ class TileGame extends React.Component {
         coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) + 1])
         coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) - 1])
 
-        coordsArr = coordsArr.filter((coords)=> this.coordsExist(coords,this.state.columns,this.state.rows))
+        coordsArr = coordsArr.filter((coords)=> coordsExist(coords,this.state.columns,this.state.rows))
 
 
         this.swapCoordsState(coordsArr[Math.floor(Math.random() * (coordsArr.length))], blankCoords)

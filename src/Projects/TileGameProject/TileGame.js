@@ -3,7 +3,7 @@ import Grid from './Components/Grid';
 import UserNumInput from './Components/UserNumInput'
 import GenericButton from './Components/GenericButton';
 import './CSS/TileGame.css';
-import {createNewGrid,coordsExist} from './Utils/Functions';
+import createNewGrid from './Utils/Functions';
 
 
 
@@ -24,6 +24,7 @@ class TileGame extends React.Component {
             ["13", "14", "15", ""]],
             playing: false,
             seconds: 0,
+            win: false
 
         }
     }
@@ -51,7 +52,9 @@ class TileGame extends React.Component {
     }
 
 
-   
+   coordsExist= (coords)=> {
+        return (coords[0] >= 0 && coords[0] < this.state.columns) && (coords[1] >= 0 && coords[1] < this.state.rows)
+    }
 
     swapRandomCoords = () => {
         let coordsArr = []
@@ -62,7 +65,7 @@ class TileGame extends React.Component {
         coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) + 1])
         coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) - 1])
 
-        coordsArr = coordsArr.filter((coords)=> coordsExist(coords,this.state.columns,this.state.rows))
+        coordsArr = coordsArr.filter(this.coordsExist)
 
 
         this.swapCoordsState(coordsArr[Math.floor(Math.random() * (coordsArr.length))], blankCoords)

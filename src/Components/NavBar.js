@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-import './NavBar.css';
+import '../CSS/NavBar.css';
 import CustomLink from './CustomLink'
 
 const NavBar = () => {

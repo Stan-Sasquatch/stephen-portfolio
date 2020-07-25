@@ -6,7 +6,7 @@ import {
     useRouteMatch
 } from "react-router-dom";
 
-import './CustomLink.css'
+import '../CSS/CustomLink.css'
 
 const CustomLink = (props) => {
     let match = useRouteMatch({

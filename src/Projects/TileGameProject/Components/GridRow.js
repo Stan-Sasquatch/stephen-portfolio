@@ -1,5 +1,5 @@
 import React from 'react'
-import './GridRow.css';
+import '../CSS/GridRow.css';
 const GridRow = (props) => {
     const tileComponents = []
 

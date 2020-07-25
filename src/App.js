@@ -5,14 +5,14 @@ import {
   Route,
   useRouteMatch
 } from "react-router-dom";
-import HomePage from './HomePage';
-import AboutPage from './AboutPage';
-import Project from './Project';
-import Navbar from './NavBar';
-import './App.css';
-import CustomLink from './CustomLink'
-import TileGame from './TileGame/TileGame'
-import HookTest from './HookTest'
+import HomePage from './Components/HomePage';
+import AboutPage from './Components/AboutPage';
+import Project from './Components/Project';
+import Navbar from './Components/NavBar';
+import './CSS/App.css';
+import CustomLink from './Components/CustomLink'
+import TileGame from './Projects/TileGameProject/TileGame'
+import HookTest from './Components/HookTest'
 
 
 

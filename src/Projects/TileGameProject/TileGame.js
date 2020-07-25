@@ -1,8 +1,8 @@
 import React from 'react';
-import Grid from './Grid';
-import UserNumInput from './UserNumInput'
-import GenericButton from './GenericButton';
-import './TileGame.css';
+import Grid from './Components/Grid';
+import UserNumInput from './Components/UserNumInput'
+import GenericButton from './Components/GenericButton';
+import './CSS/TileGame.css';
 
 
 class TileGame extends React.Component {

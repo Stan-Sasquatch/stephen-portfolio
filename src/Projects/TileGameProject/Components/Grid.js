@@ -1,6 +1,6 @@
 import React from 'react'
 import GridRow from './GridRow';
-import './Grid.css';
+import '../CSS/Grid.css';
 const Grid = (props) => {
     const rowComponents = []
     for (let i in props.array) {

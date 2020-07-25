@@ -1,6 +1,6 @@
 import React from "react";
-import Profile_Pic from './Profile_Pic.jpg'
-import './HomePage.css';
+import Profile_Pic from '../Utils/Profile_Pic.jpg'
+import '../CSS/HomePage.css';
 
 class HomePage extends React.Component {
     constructor(props) {

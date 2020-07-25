@@ -3,6 +3,9 @@ import Grid from './Components/Grid';
 import UserNumInput from './Components/UserNumInput'
 import GenericButton from './Components/GenericButton';
 import './CSS/TileGame.css';
+import createNewGrid from './Utils/Functions';
+
+
 
 
 class TileGame extends React.Component {
@@ -25,51 +28,49 @@ class TileGame extends React.Component {
         }
     }
 
+    handleGridUpdate = (axis, value) => {
 
+        const newValue = value
+        let newGrid = createNewGrid(newValue, this.state.columns)
+        let axisStateProp = "rows"
 
-    handleRowUpdate = (event) => {
-
-        this.setState({
-            rows: event.target.value,
-            gridArray: this.updateGrid(event.target.value, this.state.columns),
-            goalArray: this.updateGrid(event.target.value, this.state.columns),
-            playing: false,
-            seconds: 0,
-            win: false
-        })
-    }
-    handleColumnUpdate = (event) => {
-
-        this.setState({
-            columns: event.target.value,
-            gridArray: this.updateGrid(this.state.rows, event.target.value),
-            goalArray: this.updateGrid(this.state.rows, event.target.value),
-            playing: false,
-            seconds: 0,
-            win: false
-        })
-    }
-
-    updateGrid = (newRowNum, newColumnNum) => {
-        let newGrid = []
-        let current = 1
-        for (let row = 0; row < newRowNum; row++) {
-            let newRow = []
-
-            for (let column = 0; column < newColumnNum; column++) {
-                if (current == newRowNum * newColumnNum) {
-                    newRow.push("")
-                }
-                else {
-                    newRow.push(current)
-                }
-                current++
-            }
-            newGrid.push(newRow)
+        if (axis == 'column') {
+            newGrid = createNewGrid(this.state.rows, newValue)
+            axisStateProp = "columns"
         }
 
-        return newGrid
+        this.setState({
+            [axisStateProp]: newValue,
+            gridArray: newGrid,
+            goalArray: newGrid,
+            playing: false,
+            seconds: 0,
+            win: false
+        })
+
     }
+
+
+    // createNewGrid = (newRowNum, newColumnNum) => {
+    //     let newGrid = []
+    //     let current = 1
+    //     for (let row = 0; row < newRowNum; row++) {
+    //         let newRow = []
+
+    //         for (let column = 0; column < newColumnNum; column++) {
+    //             if (current == newRowNum * newColumnNum) {
+    //                 newRow.push("")
+    //             }
+    //             else {
+    //                 newRow.push(current)
+    //             }
+    //             current++
+    //         }
+    //         newGrid.push(newRow)
+    //     }
+
+    //     return newGrid
+    // }
 
     coordsExist = (coords) => {
         return (coords[0] >= 0 && coords[0] < this.state.columns) && (coords[1] >= 0 && coords[1] < this.state.rows)
@@ -198,8 +199,8 @@ class TileGame extends React.Component {
                     <Grid array={this.state.gridArray} onClick={this.tileOnclick} />
                     <GenericButton onClick={this.randomOnClick} text="Randomize" />
                 </div>
-                <UserNumInput id="rows input" text="Number of Rows" min={3} max={5} value={this.state.rows} onChange={this.handleRowUpdate} />
-                <UserNumInput id="columns input" text="Number of Columns" min={3} max={5} value={this.state.columns} onChange={this.handleColumnUpdate} />
+                <UserNumInput id="rows input" text="Number of Rows" min={3} max={5} value={this.state.rows} onChange={(event)=> this.handleGridUpdate('row',event.target.value)} />
+                <UserNumInput id="columns input" text="Number of Columns" min={3} max={5} value={this.state.columns} onChange={(event)=> this.handleGridUpdate('column',event.target.value)} />
                 <div>{hours < 10 ? "0" + hours : hours}:{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}</div>
                 {this.state.win && <div>Success!</div>}
 

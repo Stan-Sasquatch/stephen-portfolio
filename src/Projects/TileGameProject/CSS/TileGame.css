@@ -1,5 +1,40 @@
-.grid{
 
-    width: 300px;
-   
-    margin: 0 auto;} 
+
+
+.grid-container{
+    width: 500px;
+    height: 500px;
+     margin: 0 auto;
+     border-radius: 25px;
+     border: 2px solid black;
+     position: relative;
+background: white;
+     display: flex;
+        justify-content: center;
+
+}
+    .size-input-container{
+        margin: 0 auto;
+        color: white;
+        text-align: center;
+    }
+
+    .ui-panel{
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom:5px;
+       flex-direction: column;
+        width:390px;
+        height:150px;
+       
+        color: black;
+       
+        text-align: center;
+    }
+    .timer{
+        background: white;
+        height: 50px;
+        border:black;
+        
+    }

@@ -13,14 +13,14 @@ import './CSS/App.css';
 import CustomLink from './Components/CustomLink'
 import TileGame from './Projects/TileGameProject/TileGame'
 import HookTest from './Components/HookTest'
-
+import PenguinPage from './Projects/Penguin/PenguinPage'
 
 
 
 export default function App() {
 
 
-  return (
+  return (<div className="app">
     <HashRouter>
       <div>
 
@@ -40,6 +40,7 @@ export default function App() {
 
       </div>
     </HashRouter>
+  </div>
   );
 }
 
@@ -51,8 +52,8 @@ function ProjectsRouter() {
   const projectsArr = [
     { name: "Tile Game", linkTo: "/tilegame", component: () => { return <TileGame /> } },
     { name: "React Hook Test: useState", linkTo: "/hooktest", component: () => { return <HookTest /> } },
-    { name: "Project Three", linkTo: "/three", component: () => { return <Project projectName={"Project Three"} /> } },
-    { name: "Project Test", linkTo: "/test", component: () => { return <Project projectName={"Project test"} /> } }]
+    { name: "Penguin", linkTo: "/penguin", component: () => { return <PenguinPage /> } },
+    { name: "Project Test", linkTo: "/test", component: () => { return <Project projectName={"Project Test"} /> } }]
 
   return (
     <div>

@@ -11,7 +11,7 @@ const Grid = (props) => {
     return (
 
 
-        <table><tbody>{rowComponents}</tbody></table>);
+        <div className="grid"><table><tbody >{rowComponents}</tbody></table></div>);
 }
 
 export default Grid;

@@ -5,4 +5,11 @@
 .row td{
     background-color:red;
     text-align: center;
+   
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(32, 22, 22);
+    margin: 0 auto;
+    padding:5px;
 }
+

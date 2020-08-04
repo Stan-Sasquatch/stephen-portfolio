@@ -1,9 +1,10 @@
-.Grid  table,td {
-    border: 1px solid rgb(32, 22, 22);
-   
-    width: 100px;
-  height: 100px;
- 
-  }
+.grid {
 
+   
+   
+  
+   
+   display: flex;
+  justify-content: center;
+       } 
  

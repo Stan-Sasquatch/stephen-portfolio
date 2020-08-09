@@ -1,9 +1,9 @@
 import React from 'react';
-import Grid from './Components/Grid';
-import UserNumInput from './Components/UserNumInput'
-import GenericButton from './Components/GenericButton';
-import './CSS/TileGame.css';
-import { createNewGrid, findCoords, coordsExist, coordsAreAdjacent, swapCoords, randomCoords } from './Utils/Functions';
+import Grid from '../../Components/Grid';
+import UserNumInput from '../../Components/UserNumInput'
+import GenericButton from '../../Components/GenericButton';
+import '../../CSS/TileGame.css';
+import { createNewGrid, findCoords, coordsExist, coordsAreAdjacent, swapCoords, randomCoords, createTileGameRow } from '../../Utils/Functions';
 
 
 
@@ -148,6 +148,8 @@ class TileGame extends React.Component {
             <div className="grid-container" >
 
                 <Grid array={this.state.gridArray} onClick={this.tileOnclick} />
+                {/* createRowFunc={(a, b, c) => { createTileGameRow(a, b, c) } */}
+
                 <div className="ui-panel">
                     <GenericButton onClick={this.randomOnClick} text="Randomize" />
                     <div className="timer">{hours < 10 ? "0" + hours : hours}:{minutes < 10 ? "0" + minutes : minutes}:{seconds < 10 ? "0" + seconds : seconds}</div>

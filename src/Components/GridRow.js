@@ -9,6 +9,8 @@ const GridRow = (props) => {
         tileComponents.push(<td onClick={() => props.onClick(props.rowArray[i])} id={props.rowArray[i] == "" ? "blank" : props.rowArray[i]} className={className}>{props.rowArray[i]}</td>)
     }
 
+    // props.createRowFunc(props.rowArray, tileComponents, props.onClick);
+
     return (<tr className="row">{tileComponents}</tr>);
 }
 

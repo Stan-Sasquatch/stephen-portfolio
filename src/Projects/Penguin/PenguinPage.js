@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './PenguinPage.css';
+import '../../CSS/PenguinPage.css';
 const PenguinPage = () => {
 
     const [colourSchemeState, setcolourScheme] = useState("penguin-one");

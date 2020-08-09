@@ -14,6 +14,7 @@ import CustomLink from './Components/CustomLink'
 import TileGame from './Projects/TileGameProject/TileGame'
 import HookTest from './Components/HookTest'
 import PenguinPage from './Projects/Penguin/PenguinPage'
+import Minesweeper from './Projects/Minesweeper/Minesweeper'
 
 
 
@@ -51,7 +52,7 @@ function ProjectsRouter() {
 
   const projectsArr = [
     { name: "Tile Game", linkTo: "/tilegame", component: () => { return <TileGame /> } },
-    { name: "React Hook Test: useState", linkTo: "/hooktest", component: () => { return <HookTest /> } },
+    { name: "Minesweeper", linkTo: "/minesweeper", component: () => { return <Minesweeper /> } },
     { name: "Penguin", linkTo: "/penguin", component: () => { return <PenguinPage /> } },
     { name: "Project Test", linkTo: "/test", component: () => { return <Project projectName={"Project Test"} /> } }]
 

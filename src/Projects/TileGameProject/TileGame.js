@@ -147,8 +147,8 @@ class TileGame extends React.Component {
             </div>
             <div className="grid-container" >
 
-                <Grid array={this.state.gridArray} onClick={this.tileOnclick} />
-                {/* createRowFunc={(a, b, c) => { createTileGameRow(a, b, c) } */}
+                <Grid array={this.state.gridArray} onClick={this.tileOnclick} createRowFunc={(a, b, c) => { createTileGameRow(a, b, c) }} />
+
 
                 <div className="ui-panel">
                     <GenericButton onClick={this.randomOnClick} text="Randomize" />

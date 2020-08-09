@@ -16,29 +16,6 @@ export function createNewGrid(newRowNum, newColumnNum) {
 
 }
 
-// export function createNewGrid(newRowNum, newColumnNum) {
-//     let newGrid = []
-//     let current = 1
-//     for (let row = 0; row < newRowNum; row++) {
-//         let newRow = []
-
-//         for (let column = 0; column < newColumnNum; column++) {
-//             if (current == newRowNum * newColumnNum) {
-//                 newRow.push("")
-//             }
-//             else {
-//                 newRow.push(current)
-//             }
-//             current++
-//         }
-//         newGrid.push(newRow)
-//     }
-
-//     return newGrid
-// }
-
-
-
 
 function elementsToGrid(elementArray, rows, columns) {
     if (elementArray.length == rows * columns) {
@@ -62,7 +39,7 @@ function elementsToGrid(elementArray, rows, columns) {
     else { alert("Stan Error: incorrect array size") }
 }
 
-function createNewMinesweeperGrid(mineCount, rows, columns) {
+export function createNewMinesweeperGrid(mineCount, rows, columns) {
     let arr = []
 
     if (mineCount <= (rows * columns) - 1) {
@@ -75,7 +52,13 @@ function createNewMinesweeperGrid(mineCount, rows, columns) {
 
 
         }
-        elementsToGrid(arr, rows, columns)
+
+        arr = elementsToGrid(arr, rows, columns)
+        for (let i = 0; i < 100; i++) {
+            randomize(arr)
+        }
+
+        return arr
 
     }
     else alert("too many mines for this grid size")
@@ -103,7 +86,15 @@ export function findCoords(text, arr) {
     return coords
 }
 
+function randomize(arr) {
+    const rows = arr.length
+    const columns = arr[0].length
 
+    const coordsOne = [Math.floor(Math.random() * columns), Math.floor(Math.random() * rows)]
+    const coordsTwo = [Math.floor(Math.random() * columns), Math.floor(Math.random() * rows)]
+
+    swapCoords(coordsOne, coordsTwo, arr)
+}
 export function coordsAreAdjacent(a, b) {
 
     return ((a[0] == b[0]) && (Math.abs(a[1] - b[1]) == 1))
@@ -121,14 +112,14 @@ export function swapCoords(a, b, arr) {
 }
 
 
-//Returns Random coordinates adjacent to 'blankCoords' that exist in a rows by columns array
-export function randomCoords(columns, rows, blankCoords) {
+//Returns Random coordinates adjacent to 'targetCoords' that exist in a rows by columns array
+export function randomCoords(columns, rows, targetCoords) {
     let coordsArr = []
 
-    coordsArr.push([parseInt(blankCoords[0]) + 1, blankCoords[1]])
-    coordsArr.push([parseInt(blankCoords[0]) - 1, blankCoords[1]])
-    coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) + 1])
-    coordsArr.push([blankCoords[0], parseInt(blankCoords[1]) - 1])
+    coordsArr.push([parseInt(targetCoords[0]) + 1, targetCoords[1]])
+    coordsArr.push([parseInt(targetCoords[0]) - 1, targetCoords[1]])
+    coordsArr.push([targetCoords[0], parseInt(targetCoords[1]) + 1])
+    coordsArr.push([targetCoords[0], parseInt(targetCoords[1]) - 1])
 
     coordsArr = coordsArr.filter((e) => coordsExist(e, columns, rows))
     return coordsArr[Math.floor(Math.random() * (coordsArr.length))]
@@ -140,6 +131,14 @@ export function createTileGameRow(rowArray, tileComponents, onClick) {
     for (let i in rowArray) {
         const className = rowArray[i] == "" ? "blank" : ""
         tileComponents.push(<td onClick={() => onClick(rowArray[i])} id={rowArray[i] == "" ? "blank" : rowArray[i]} className={className}>{rowArray[i]}</td>)
+    }
+    return tileComponents
+}
+export function createMinesweeperGameRow(rowArray, tileComponents, onClick) {
+
+    for (let i in rowArray) {
+        const className = rowArray[i] == 1 ? "mine" : "safe"
+        tileComponents.push(<td onClick={() => onClick(rowArray[i])} className={className}>{rowArray[i]}</td>)
     }
     return tileComponents
 }

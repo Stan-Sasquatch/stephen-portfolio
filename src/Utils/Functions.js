@@ -39,7 +39,12 @@ function elementsToGrid(elementArray, rows, columns) {
     else { alert("Stan Error: incorrect array size") }
 }
 
-export function createNewMinesweeperGrid(mineCount, rows, columns) {
+export function createBlankGrid(rows, columns) {
+    const arr = Array(rows * columns).fill("")
+    return elementsToGrid(arr, rows, columns)
+}
+
+export function createNewMinesweeperGrid(mineCount, rows, columns, safeSquare) {
     let arr = []
 
     if (mineCount <= (rows * columns) - 1) {
@@ -58,7 +63,12 @@ export function createNewMinesweeperGrid(mineCount, rows, columns) {
             randomize(arr)
         }
 
-        return arr
+        if (arr[safeSquare[0]][safeSquare[1]] == 1) {
+            randomize(arr)
+        }
+        else {
+            return arr
+        }
 
     }
     else alert("too many mines for this grid size")
@@ -137,8 +147,24 @@ export function createTileGameRow(rowArray, tileComponents, onClick) {
 export function createMinesweeperGameRow(rowArray, tileComponents, onClick) {
 
     for (let i in rowArray) {
-        const className = rowArray[i] == 1 ? "mine" : "safe"
-        tileComponents.push(<td onClick={() => onClick(rowArray[i])} className={className}>{rowArray[i]}</td>)
+        const status = rowArray[i] == 1 ? "mine" : "safe"
+
+        tileComponents.push(<td onClick={() => onClick(status)} id={status} className={status} value={status}>{status}</td>)
+    }
+    return tileComponents
+}
+
+export function createBlankGameRow(rowArray, tileComponents, onClick, row) {
+
+
+    const status = "blank"
+
+    // tileComponents = rowArray.map(() => { return <td onClick={onClick} id={status} className={status} value={status}>{status}</td> })
+
+
+    for (let i = 0; i < rowArray.length; i++) {
+        tileComponents.push(<td onClick={() => { onClick(row, i) }} id={status} className={status} value={status}>{status}</td>)
+
     }
     return tileComponents
 }

@@ -3,7 +3,7 @@ import Grid from '../../Components/Grid';
 import UserNumInput from '../../Components/UserNumInput'
 import GenericButton from '../../Components/GenericButton';
 import '../../CSS/TileGame.css';
-import { createNewGrid, findCoords, coordsExist, coordsAreAdjacent, swapCoords, randomCoords, createTileGameRow } from '../../Utils/Functions';
+import { createNewGrid, findCoords, coordsAreAdjacent, swapCoords, randomCoords, createTileGameRow } from '../../Utils/Functions';
 
 
 

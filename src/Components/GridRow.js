@@ -3,7 +3,7 @@ import '../CSS/GridRow.css';
 const GridRow = (props) => {
     const tileComponents = []
 
-    props.createRowFunc(props.rowArray, tileComponents, props.onClick);
+    props.createRowFunc(props.rowArray, tileComponents, props.onClick, props.row);
 
     return (<tr className="row">{tileComponents}</tr>);
 }

@@ -10,7 +10,7 @@ const PenguinPage = () => {
 
 const Penguin = (props) => {
 
-    return (<div ><div className={"penguin" + " " + props.colourScheme}>
+    return (<div ><div className={"penguin " + props.colourScheme}>
 
         <div className="penguin-bottom">
             <div className="right-hand"></div>

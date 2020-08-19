@@ -20,7 +20,7 @@ const Minesweeper = () => {
 
 
         setSafeSquare([row, column])
-
+        console.log("on click worked")
     }
 
     return (<div>

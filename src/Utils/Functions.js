@@ -59,23 +59,22 @@ export function createNewMinesweeperGrid(mineCount, rows, columns, safeSquare) {
         }
 
         arr = elementsToGrid(arr, rows, columns)
-        for (let i = 0; i < 100; i++) {
+
+
+        for (let i = 0; i < 50; i++) {
             randomize(arr)
         }
 
-        if (arr[safeSquare[0]][safeSquare[1]] == 1) {
+        do {
             randomize(arr)
         }
-        else {
-            return arr
-        }
-
+        while (arr[safeSquare[0]][safeSquare[1]] == 1)
+        return arr
     }
     else alert("too many mines for this grid size")
 
 
 }
-
 
 
 //Takes an array of length 2 containing two numbers and two numbers as params
@@ -104,6 +103,8 @@ function randomize(arr) {
     const coordsTwo = [Math.floor(Math.random() * columns), Math.floor(Math.random() * rows)]
 
     swapCoords(coordsOne, coordsTwo, arr)
+
+
 }
 export function coordsAreAdjacent(a, b) {
 

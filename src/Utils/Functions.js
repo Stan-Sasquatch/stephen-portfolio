@@ -68,7 +68,7 @@ export function createNewMinesweeperGrid(mineCount, rows, columns, safeSquare) {
         do {
             randomize(arr)
         }
-        while (arr[safeSquare[0]][safeSquare[1]] == 1)
+        while (arr[safeSquare[1]][safeSquare[0]] == 1)
         return arr
     }
     else alert("too many mines for this grid size")
@@ -145,10 +145,10 @@ export function createTileGameRow(rowArray, tileComponents, onClick) {
     }
     return tileComponents
 }
-export function createMinesweeperGameRow(rowArray, tileComponents, onClick) {
+export function createMinesweeperGameRow(rowArray, tileComponents, onClick, row, arr) {
 
     for (let i in rowArray) {
-        const status = rowArray[i] == 1 ? "mine" : "safe"
+        const status = rowArray[i] == 1 ? "mine" : minesAdjacentToCoordsInArr([i, row], arr, 5, 5)
 
         tileComponents.push(<td onClick={() => onClick(status)} id={status} className={status} value={status}>{status}</td>)
     }
@@ -164,8 +164,52 @@ export function createBlankGameRow(rowArray, tileComponents, onClick, row) {
 
 
     for (let i = 0; i < rowArray.length; i++) {
-        tileComponents.push(<td onClick={() => { onClick(row, i) }} id={status} className={status} value={status}>{status}</td>)
+        tileComponents.push(<td onClick={() => { onClick(i, row) }} id={status} className={status} value={status}>{status}</td>)
 
     }
     return tileComponents
+
+}
+
+const minesAdjacentToCoordsInArr = (coords, arr, columns, rows) => {
+
+
+    let total = 0
+    let column = coords[0]
+    let row = coords[1]
+    const adjacentTotal = (column, row, arr) => {
+        if (coordsExist([column, row], columns, rows)) {
+            console.log(arr)
+            return arr[row][column]
+        }
+        return 0
+    }
+
+
+    row--
+
+    total += adjacentTotal(column, row, arr)
+    column++
+
+    total += adjacentTotal(column, row, arr)
+    row++
+
+
+    total += adjacentTotal(column, row, arr)
+    row++
+
+    total += adjacentTotal(column, row, arr)
+    column--
+
+    total += adjacentTotal(column, row, arr)
+    column--
+
+    total += adjacentTotal(column, row, arr)
+    row--
+
+    total += adjacentTotal(column, row, arr)
+    row--
+
+    total += adjacentTotal(column, row, arr)
+    return total
 }

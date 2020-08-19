@@ -11,22 +11,22 @@ const Minesweeper = () => {
 
 
     const onClickPlayingTrue = (tile) => {
-        alert(tile == "mine" ? "mine" : "safe")
+        alert(tile == "mine" ? "BOOM" : "Function Needed")
     }
 
 
-    const onClickPlayingFalse = (row, column) => {
+    const onClickPlayingFalse = (column, row) => {
         setPlaying(true)
 
 
-        setSafeSquare([row, column])
-        console.log("on click worked")
+        setSafeSquare([column, row])
+
     }
 
     return (<div>
         <div>{safeSquare}</div>
-        {playing ? <Grid array={createNewMinesweeperGrid(mines, rows, columns, safeSquare)} onClick={onClickPlayingTrue} createRowFunc={(a, b, c, d) => { createMinesweeperGameRow(a, b, c, d) }} /> :
-            <Grid array={createBlankGrid(rows, columns)} onClick={(row, column) => onClickPlayingFalse(row, column)} createRowFunc={(a, b, c, d) => { createBlankGameRow(a, b, c, d) }} />}    </div>)
+        {playing ? <Grid array={createNewMinesweeperGrid(mines, rows, columns, safeSquare)} onClick={onClickPlayingTrue} createRowFunc={(a, b, c, d, e) => { createMinesweeperGameRow(a, b, c, d, e) }} /> :
+            <Grid array={createBlankGrid(columns, rows)} onClick={(column, row) => onClickPlayingFalse(column, row)} createRowFunc={(a, b, c, d, e) => { createBlankGameRow(a, b, c, d, e) }} />}    </div>)
 
 }
 

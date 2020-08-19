@@ -179,13 +179,11 @@ const minesAdjacentToCoordsInArr = (coords, arr, columns, rows) => {
     let row = coords[1]
     const adjacentTotal = (column, row, arr) => {
         if (coordsExist([column, row], columns, rows)) {
-            console.log(arr)
+
             return arr[row][column]
         }
         return 0
     }
-
-
     row--
 
     total += adjacentTotal(column, row, arr)
@@ -193,7 +191,6 @@ const minesAdjacentToCoordsInArr = (coords, arr, columns, rows) => {
 
     total += adjacentTotal(column, row, arr)
     row++
-
 
     total += adjacentTotal(column, row, arr)
     row++

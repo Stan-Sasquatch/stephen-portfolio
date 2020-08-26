@@ -6,13 +6,13 @@ import {
   useRouteMatch
 } from "react-router-dom";
 import HomePage from './Components/HomePage';
-import AboutPage from './Components/AboutPage';
+import WeatherBar from './Components/WeatherBar';
 import Project from './Components/Project';
 import Navbar from './Components/NavBar';
 import './CSS/App.css';
 import CustomLink from './Components/CustomLink'
 import TileGame from './Projects/TileGameProject/TileGame'
-import PenguinPage from './Projects/Penguin/PenguinPage'
+import PenguinPage from './Components/PenguinPage'
 import Minesweeper from './Projects/Minesweeper/Minesweeper'
 
 
@@ -28,7 +28,7 @@ export default function App() {
 
         <Switch>
           <Route path="/about">
-            <AboutPage />
+            <WeatherBar town="Reading" countryISO="UK" />
           </Route>
           <Route path="/projects">
             <ProjectsRouter />
@@ -52,8 +52,8 @@ function ProjectsRouter() {
   const projectsArr = [
     { name: "Tile Game", linkTo: "/tilegame", component: () => { return <TileGame /> } },
     { name: "Minesweeper (In Progress)", linkTo: "/minesweeper", component: () => { return <Minesweeper /> } },
-    { name: "Penguin", linkTo: "/penguin", component: () => { return <PenguinPage /> } },
-    { name: "Project Test", linkTo: "/test", component: () => { return <Project projectName={"Project Test"} /> } }]
+    { name: "Weather", linkTo: "/weather", component: () => { return <WeatherBar town="Reading" countryISO="UK" /> } }
+  ]
 
   return (
     <div>

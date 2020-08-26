@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   useRouteMatch
+
 } from "react-router-dom";
 import HomePage from './Components/HomePage';
 import WeatherBar from './Components/WeatherBar';
@@ -18,13 +19,21 @@ import Minesweeper from './Projects/Minesweeper/Minesweeper'
 
 
 export default function App() {
+  const linksArr = [{ id: "homeLink", text: "Home", link: "/", activeOnlyWhenExact: true },
+  { id: "aboutLink", text: "About", link: "/about" },
+  { id: "projectsLink", text: "Projects", link: "/projects" }]
+
+
+
 
 
   return (<div className="app">
     <HashRouter>
       <div>
 
-        <Navbar />
+        <Navbar linksArr={linksArr} nested={false} />
+
+
 
         <Switch>
           <Route path="/about">
@@ -47,27 +56,23 @@ export default function App() {
 function ProjectsRouter() {
 
   let { path, url } = useRouteMatch();
-
+  let myURL = url
 
   const projectsArr = [
-    { name: "Tile Game", linkTo: "/tilegame", component: () => { return <TileGame /> } },
-    { name: "Minesweeper (In Progress)", linkTo: "/minesweeper", component: () => { return <Minesweeper /> } },
-    { name: "Weather", linkTo: "/weather", component: () => { return <WeatherBar town="Reading" countryISO="UK" /> } }
+    { id: "Tile Game", text: "Tile Game", link: "/tilegame", component: () => { return <TileGame /> } },
+    { id: "Minesweeper", text: "Minesweeper", link: "/minesweeper", component: () => { return <Minesweeper /> } },
+    { id: "Weather", text: "Weather", link: "/weather", component: () => { return <WeatherBar town="Reading" countryISO="UK" /> } }
   ]
 
   return (
     <div>
       <h2>Projects</h2>
-      <ul>
-        {projectsArr.map(projectObj => <CustomLink id={projectObj.name} text={projectObj.name} to={`${url + projectObj.linkTo}`} />)}
-
-      </ul>
-
+      <Navbar linksArr={projectsArr} url={myURL} nested={true} />
       <Switch>
         <Route exact path={path}>
           <h3>Please select a project.</h3>
         </Route>
-        {projectsArr.map(projectObj => <Route path={`${path + projectObj.linkTo}`} >{projectObj.component}</Route>)}
+        {projectsArr.map(projectObj => <Route path={path + projectObj.link} >{projectObj.component}</Route>)}
       </Switch>
     </div>
   );

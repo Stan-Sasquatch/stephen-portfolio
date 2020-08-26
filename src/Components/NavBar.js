@@ -1,18 +1,14 @@
 import React from 'react';
-
-
-
 import '../CSS/NavBar.css';
 import CustomLink from './CustomLink'
 
-const NavBar = () => {
+const NavBar = (props) => {
 
     return (
         <nav>
             <ul>
-                <CustomLink id="homeLink" text="Home" to="/" activeOnlyWhenExact={true} />
-                <CustomLink id="aboutLink" text="About" to="/about" />
-                <CustomLink id="projectsLink" text="Projects" to="/projects" />
+                {props.linksArr.map(linksObj => <CustomLink id={linksObj.id} text={linksObj.text} to={props.nested ? props.url + linksObj.link : linksObj.link} activeOnlyWhenExact={linksObj.activeOnlyWhenExact} />)}
+
             </ul>
         </nav>
 

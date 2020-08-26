@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 const WeatherBar = (props) => {
 
-    const apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${props.town + "," + props.countryISO}&units=metric&appid=241c9f42a05bb698875c2e9b88bf89ea`
+    const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${props.town + "," + props.countryISO}&units=metric&appid=241c9f42a05bb698875c2e9b88bf89ea`
 
     const [weatherState, setWeatherState] = useState({ imgSrc: "", temp: "", description: "", loaded: false });
     useEffect(() => {

@@ -19,21 +19,16 @@ import Minesweeper from './Projects/Minesweeper/Minesweeper'
 
 
 export default function App() {
+
   const linksArr = [{ id: "homeLink", text: "Home", link: "/", activeOnlyWhenExact: true },
   { id: "aboutLink", text: "About", link: "/about" },
   { id: "projectsLink", text: "Projects", link: "/projects" }]
 
 
-
-
-
   return (<div className="app">
     <HashRouter>
       <div>
-
         <Navbar linksArr={linksArr} nested={false} />
-
-
 
         <Switch>
           <Route path="/about">
@@ -46,7 +41,6 @@ export default function App() {
             <HomePage />
           </Route>
         </Switch>
-
       </div>
     </HashRouter>
   </div>

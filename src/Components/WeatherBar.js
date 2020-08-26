@@ -26,7 +26,7 @@ const WeatherBar = (props) => {
 
         <p>Temperature: {Number(weatherState.temp).toFixed(1)}</p>
         <p>Weather: {weatherState.description}</p>
-        <img alt="weather in your area" src={"http://api.openweathermap.org/img/w/" + weatherState.imgSrc + ".png"}></img></div>);
+        <img alt="weather in your area" src={"https://api.openweathermap.org/img/w/" + weatherState.imgSrc + ".png"}></img></div>);
 }
 
 export default WeatherBar;

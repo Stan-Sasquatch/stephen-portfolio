@@ -14,7 +14,7 @@ const WeatherBar = (props) => {
                 }))
 
 
-            .catch(console.log("ERROR"))
+            .catch(console.log("ERROR update"))
     }, [])
 
     if (!weatherState.loaded) {

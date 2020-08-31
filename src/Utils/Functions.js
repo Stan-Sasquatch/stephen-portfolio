@@ -145,12 +145,20 @@ export function createTileGameRow(rowArray, tileComponents, onClick) {
     }
     return tileComponents
 }
-export function createMinesweeperGameRow(rowArray, tileComponents, onClick, row, arr) {
+export function createMinesweeperGameRow(rowArray, tileComponents, onClick, row, arr, safeSquare) {
 
     for (let i in rowArray) {
-        const status = rowArray[i] == 1 ? "mine" : minesAdjacentToCoordsInArr([i, row], arr, 5, 5)
+        const currentCoords = [i, row]
+        const currentIsFirstClick = JSON.stringify(currentCoords) === JSON.stringify(safeSquare)
+        const status =
 
-        tileComponents.push(<td onClick={() => onClick(status)} id={status} className={status} value={status}>{status}</td>)
+            rowArray[i] == 1 ? "mine" : minesAdjacentToCoordsInArr(currentCoords, arr, 5, 5)
+
+        tileComponents.push(<td onClick={() => onClick(status, currentCoords)} id={`${currentCoords}`} className={currentIsFirstClick ? "normal" : "blank"} value={status}>{currentIsFirstClick ? status : ""}</td>)
+
+
+
+
     }
     return tileComponents
 }
@@ -209,4 +217,18 @@ const minesAdjacentToCoordsInArr = (coords, arr, columns, rows) => {
 
     total += adjacentTotal(column, row, arr)
     return total
+}
+
+export function revealSquare(status, coords) {
+    document.getElementById(coords).textContent = status;
+    document.getElementById(coords).className = "normal"
+}
+export function revealAdjacentSquares(coords, columns, rows) {
+    // let coordsColumn =coords[0]
+    // let coordsRow=coords[1]
+
+    // coordsColumn--
+
+    // if(coordsExist([coordsColumn,coordsRow],))
+
 }

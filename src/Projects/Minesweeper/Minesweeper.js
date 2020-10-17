@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import MineSweeperGrid from '../../Components/MineSweeperGrid';
+import RadioButtonGroup from '../../Components/RadioButtonGroup';
 import '../../CSS/MineSweeper.css';
 import { checkForWin, createStatusGrid, createBlankGrid, adjacentSquaresToReveal } from '../../Utils/Functions';
 
 const Minesweeper = () => {
-    const [mines, setMines] = useState(3);
-    const [rows, setRows] = useState(5);
-    const [columns, setColumns] = useState(5);
+    const [mines, setMines] = useState(4);
+    const [rows, setRows] = useState(6);
+    const [columns, setColumns] = useState(6);
     const [playing, setPlaying] = useState(false);
-    // const [safeSquare, setSafeSquare] = useState([0, 0])
+    const [difficulty, setDifficulty] = useState("Easy")
     const [statusGrid, setStatusGrid] = useState(createBlankGrid(rows, columns, { valueToDisplay: "", revealed: false }))
     const resetGrid = () => {
         setStatusGrid(createBlankGrid(rows, columns, { valueToDisplay: "", revealed: false, rightClicked: false }))
@@ -50,13 +51,6 @@ const Minesweeper = () => {
 
             setPlaying(true)
         }
-
-
-
-
-
-
-
     }
 
 
@@ -81,7 +75,7 @@ const Minesweeper = () => {
         alert(`You ${message}!`)
 
 
-        // resetGrid()
+
 
         return true
     }
@@ -100,11 +94,6 @@ const Minesweeper = () => {
                 revealSquareProp(element, arr)
             })
         }
-
-        // status == "Mine" ? cleanUp(arr, "lose") : adjacentSquaresToReveal(coords, array).forEach(element => {
-        //     revealSquareProp(element, arr)
-        // });
-
 
 
         if (checkForWin(revealSquareProp(coords, arr))) {
@@ -136,13 +125,54 @@ const Minesweeper = () => {
         e.preventDefault()
     }
 
-    return (<div className={"MineSweeperContainer"}>
-        {/* status Grid
-        <Grid array={statusGrid} tileType={"status"} />
-        revealed Grid
-        <Grid array={statusGrid} tileType={"revealed"} />
+    const difficultyOnChange = (event) => {
+        let newRows
+        let newColumns
+        let newMines
 
-        UI Grid */}
+        const newDifficulty = event.target.value
+        const updateDifficulty = (newRows, newColumns, newMines) => {
+            setRows(newRows)
+            setColumns(newColumns)
+            setMines(newMines)
+
+        }
+
+        switch (newDifficulty) {
+            case "Easy":
+                newRows = 6
+                newColumns = 6
+                newMines = 4
+
+
+                break
+
+            case "Medium":
+                newRows = 8
+                newColumns = 8
+                newMines = 10
+
+                break
+
+            case "Hard":
+                newRows = 10
+                newColumns = 10
+                newMines = 25
+
+                break
+
+        }
+
+        updateDifficulty(newRows, newColumns, newMines)
+
+        setDifficulty(newDifficulty)
+
+        setStatusGrid(createBlankGrid(newRows, newColumns, { valueToDisplay: "", revealed: false, rightClicked: false }))
+        setPlaying(false)
+    }
+
+    return (<div className={"MineSweeperContainer"}>
+        <RadioButtonGroup current={difficulty} onChange={difficultyOnChange} structure={["Difficulty", ["Easy", "Medium", "Hard"]]} />
         <MineSweeperGrid array={statusGrid} onClick={playing ? (coords) => playingOnClick(coords, statusGrid) : (safeSquare) => initialOnClick(safeSquare)} playing={playing} onContextMenu={playing ? (e, coords) => onRightClick(e, coords, statusGrid) : (e) => initialRightClick(e)} />
         <button onClick={resetGrid}>Reset</button>
 

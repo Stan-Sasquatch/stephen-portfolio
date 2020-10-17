@@ -39,8 +39,8 @@ function elementsToGrid(elementArray, rows, columns) {
     else { alert("Stan Error: incorrect array size") }
 }
 
-export function createBlankGrid(rows, columns) {
-    const arr = Array(rows * columns).fill("")
+export function createBlankGrid(rows, columns, filler) {
+    const arr = Array(rows * columns).fill(filler)
     return elementsToGrid(arr, rows, columns)
 }
 
@@ -145,30 +145,44 @@ export function createTileGameRow(rowArray, tileComponents, onClick) {
     }
     return tileComponents
 }
-export function createMinesweeperGameRow(rowArray, tileComponents, onClick, row, arr, safeSquare) {
+export function createMinesweeperGameRow(rowArray, tileComponents, onClick, row, arr, safeSquare, columns, rows, revealedGrid) {
+
 
     for (let i in rowArray) {
         const currentCoords = [i, row]
-        const currentIsFirstClick = JSON.stringify(currentCoords) === JSON.stringify(safeSquare)
+
+        const revealed = coordsAreRevealed(currentCoords, revealedGrid)
+
         const status =
 
-            rowArray[i] == 1 ? "mine" : minesAdjacentToCoordsInArr(currentCoords, arr, 5, 5)
+            rowArray[i] == 1 ? "mine" : minesAdjacentToCoordsInArr(currentCoords, arr, columns, rows)
 
-        tileComponents.push(<td onClick={() => onClick(status, currentCoords)} id={`${currentCoords}`} className={currentIsFirstClick ? "normal" : "blank"} value={status}>{currentIsFirstClick ? status : ""}</td>)
+        tileComponents.push(<td onClick={() => onClick(status, currentCoords, columns, rows)} id={`${currentCoords}`} className={revealed ? "revealed" : "blank"} value={status}>{revealed ? status : ""}</td>)
 
 
 
 
     }
+
+
+
+
+
     return tileComponents
+}
+
+const coordsAreRevealed = (currentCoords, revealedGrid) => {
+
+    return revealedGrid[currentCoords[0]][currentCoords[1]]
+
+
+
 }
 
 export function createBlankGameRow(rowArray, tileComponents, onClick, row) {
 
 
     const status = "blank"
-
-    // tileComponents = rowArray.map(() => { return <td onClick={onClick} id={status} className={status} value={status}>{status}</td> })
 
 
     for (let i = 0; i < rowArray.length; i++) {
@@ -219,16 +233,198 @@ const minesAdjacentToCoordsInArr = (coords, arr, columns, rows) => {
     return total
 }
 
-export function revealSquare(status, coords) {
-    document.getElementById(coords).textContent = status;
-    document.getElementById(coords).className = "normal"
+export function revealSquare(coords, revealedGrid, setRevealedGrid) {
+    // document.getElementById(coords).textContent = status;
+    // document.getElementById(coords).className = "revealed"
+    revealedGrid[coords[0]][coords[1]] = true
+    setRevealedGrid(revealedGrid)
 }
-export function revealAdjacentSquares(coords, columns, rows) {
-    // let coordsColumn =coords[0]
-    // let coordsRow=coords[1]
 
-    // coordsColumn--
 
-    // if(coordsExist([coordsColumn,coordsRow],))
+const findAdjacentSquares = (coords) => {
 
+    const x = parseInt(coords[0], 10);
+    const y = parseInt(coords[1], 10)
+
+    return [[x, y - 1],
+    [x + 1, y - 1],
+    [x + 1, y],
+    [x + 1, y + 1],
+    [x, y + 1],
+    [x - 1, y + 1],
+    [x - 1, y],
+    [x - 1, y - 1]]
+}
+
+// export function revealAdjacentSquares(coords, columnsTotal, rowsTotal) {
+
+//     let coordsToCheckSet = new Set(findAdjacentSquares(coords))
+//     // console.log(coordsToCheckSet)
+//     coordsToCheckSet.forEach((e) => checkAndReveal(e, columnsTotal, rowsTotal, coordsToCheckSet))
+
+
+// }
+
+// const checkAndReveal = (coords, columnsTotal, rowsTotal, checkSet) => {
+
+//     if (coordsExist(coords, columnsTotal, rowsTotal)) {
+//         const stringCoords = `${coords[0]},${coords[1]}`
+
+//         const currentStatus = document.getElementById(stringCoords).value
+
+//         if (currentStatus !== "mine") {
+//             revealSquare(currentStatus, coords)
+
+//             if (currentStatus == "0") { findAdjacentSquares(coords).forEach(checkSet.add(coords)) }
+
+//         }
+
+
+//     }
+
+// }
+
+export function checkForWin(statusGrid) {
+
+
+    const isRevealed = (element) => { return element.revealed }
+
+    const rowWin = (arr) => { return arr.filter(element => element.valueToDisplay !== "Mine").every(isRevealed) }
+
+
+
+
+
+
+    return statusGrid.every(rowWin)
+}
+
+export function createStatusGrid(mineCount, rows, columns, safeSquare) {
+
+
+
+    let statusGrid = []
+    const minesGrid = createNewMinesweeperGrid(mineCount, rows, columns, safeSquare)
+
+    for (let i = 0; i < minesGrid.length; i++) {
+        let statusGridRow = []
+
+        for (let j = 0; j < minesGrid[i].length; j++) {
+
+            const currentCoords = [j, i]
+
+            const display = minesGrid[i][j] == 1 ? "Mine" : minesAdjacentToCoordsInArr(currentCoords, minesGrid, columns, rows)
+            const reveal = currentCoords.toString() === safeSquare.toString()
+
+            statusGridRow.push({ valueToDisplay: display, revealed: reveal, rightClicked: false })
+
+        }
+        statusGrid.push(statusGridRow)
+    }
+
+    return statusGrid
+}
+
+
+export function adjacentSquaresToReveal(coords, arr) {
+
+
+
+    const arrayValueAtCoords = (array, coordinates) => {
+
+        return coordinates.length > 0 ? array[coordinates[1]][coordinates[0]].valueToDisplay : "empty"
+
+
+
+    }
+
+    const rows = arr.length
+    const columns = arr[0].length
+
+    const allAdjacentCoords = (coords, rows, columns) => {
+        const adjacentSquares = []
+        let column = parseInt(coords[0], 10)
+        let row = parseInt(coords[1], 10)
+
+
+        const pushCoords = (column, row, columns, rows) => {
+            let current = [column, row]
+            if (coordsExist(current, columns, rows)) {
+                adjacentSquares.push(current)
+            }
+        }
+        row--
+        pushCoords(column, row, columns, rows)
+        column++
+        pushCoords(column, row, columns, rows)
+        row++
+        pushCoords(column, row, columns, rows)
+        row++
+        pushCoords(column, row, columns, rows)
+        column--
+        pushCoords(column, row, columns, rows)
+        column--
+        pushCoords(column, row, columns, rows)
+        row--
+        pushCoords(column, row, columns, rows)
+        row--
+        pushCoords(column, row, columns, rows)
+
+        return adjacentSquares
+
+    }
+
+
+    let toReveal = allAdjacentCoords(coords, rows, columns).filter(element => arrayValueAtCoords(arr, element) == 0)
+    let zeroArray = [...toReveal]
+
+    const customArrIncludes = (arrToCheck, element) => {
+
+        const has = (a) => { return JSON.stringify(a) === JSON.stringify(element) }
+
+
+        return arrToCheck.some(has)
+
+    }
+
+
+
+    let i = 0;
+    do {
+
+        if (zeroArray.length > 0) {
+
+            const currentAdj = allAdjacentCoords(zeroArray[i], rows, columns)
+
+            for (let j in currentAdj) {
+
+                if (!customArrIncludes(toReveal, currentAdj[j])) {
+                    toReveal.push(currentAdj[j])
+                }
+                if (arrayValueAtCoords(arr, currentAdj[j]) == 0) {
+
+
+                    if (!customArrIncludes(zeroArray, currentAdj[j])) {
+
+                        zeroArray.push(currentAdj[j])
+
+                    }
+
+
+                }
+
+            }
+
+
+        }
+
+        i++
+    }
+    while (i < zeroArray.length)
+
+
+
+
+
+    return toReveal
 }

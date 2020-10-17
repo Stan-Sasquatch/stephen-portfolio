@@ -1,4 +1,4 @@
- .row td.blank{
+ /* .row td.blank{
     background-color: white
 }
 
@@ -11,9 +11,9 @@
     border: 2px solid rgb(32, 22, 22);
     margin: 0 auto;
     padding:5px;
-}
+} */
 
-.row td.normal{
+/* .row td.revealed{
     background-color:red;
     text-align: center;
    
@@ -22,5 +22,5 @@
     border: 2px solid rgb(32, 22, 22);
     margin: 0 auto;
     padding:5px;
-}
+} */
 

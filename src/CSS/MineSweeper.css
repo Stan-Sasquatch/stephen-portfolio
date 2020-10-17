@@ -1,0 +1,46 @@
+.MineSweeperContainer{
+   
+     
+     
+     
+     position: relative;
+     flex-direction: column;
+     display: flex;
+        justify-content: center;
+}
+
+
+
+
+td.MS{
+    background-color:blue;
+    text-align: center;
+   
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(32, 22, 22);
+    margin: 0 auto;
+    padding:5px;
+}
+
+td.revealed{
+    background-color:gray;
+    text-align: center;
+   
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(32, 22, 22);
+    margin: 0 auto;
+    padding:5px;
+}
+td.rightClicked{
+    background-color:red;
+    text-align: center;
+   
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(32, 22, 22);
+    margin: 0 auto;
+    padding:5px;
+}
+

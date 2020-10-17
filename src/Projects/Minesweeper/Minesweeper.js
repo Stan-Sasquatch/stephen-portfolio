@@ -1,38 +1,152 @@
 import React, { useState } from 'react';
-import Grid from '../../Components/Grid';
-import { createNewMinesweeperGrid, createBlankGrid, createMinesweeperGameRow, createBlankGameRow, revealAdjacentSquares, revealSquare } from '../../Utils/Functions';
+import MineSweeperGrid from '../../Components/MineSweeperGrid';
+import '../../CSS/MineSweeper.css';
+import { checkForWin, createStatusGrid, createBlankGrid, adjacentSquaresToReveal } from '../../Utils/Functions';
 
 const Minesweeper = () => {
-    const [mines, setMines] = useState(7);
+    const [mines, setMines] = useState(3);
     const [rows, setRows] = useState(5);
     const [columns, setColumns] = useState(5);
     const [playing, setPlaying] = useState(false);
-    const [safeSquare, setSafeSquare] = useState([0, 0])
+    // const [safeSquare, setSafeSquare] = useState([0, 0])
+    const [statusGrid, setStatusGrid] = useState(createBlankGrid(rows, columns, { valueToDisplay: "", revealed: false }))
+    const resetGrid = () => {
+        setStatusGrid(createBlankGrid(rows, columns, { valueToDisplay: "", revealed: false, rightClicked: false }))
+        setPlaying(false)
+    }
 
+    const revealSquareProp = (coords, arr) => {
 
-    const onClickPlayingTrue = (status, coords) => {
-        revealSquare(status, coords)
+        arr[coords[1]][coords[0]].revealed = true
+        return arr
+    }
 
-        if (status == "mine") { alert("BOOM") }
-        else { revealAdjacentSquares() }
+    const rightClickedSquarePropToggle = (coords, arr) => {
+
+        arr[coords[1]][coords[0]].rightClicked = !arr[coords[1]][coords[0]].rightClicked
+        return arr
     }
 
 
+    const initialOnClick = (safeSquare) => {
 
-    const onClickPlayingFalse = (column, row) => {
-        setPlaying(true)
+        let arr = createStatusGrid(mines, rows, columns, safeSquare)
 
 
-        setSafeSquare([`${column}`, `${row}`])
+        adjacentSquaresToReveal(safeSquare, arr).forEach(element => {
+            revealSquareProp(element, arr)
+        });
+
+        if (checkForWin(arr)) {
+
+            setStatusGrid(arr)
+
+            alert("You Win!")
+            if (cleanUp(arr, "win")) { return }
+        }
+
+        else {
+            setStatusGrid(arr)
+
+            setPlaying(true)
+        }
+
+
+
+
 
 
 
     }
 
-    return (<div>
-        <div>{safeSquare}</div>
-        {playing ? <Grid array={createNewMinesweeperGrid(mines, rows, columns, safeSquare)} onClick={onClickPlayingTrue} createRowFunc={(a, b, c, d, e) => { createMinesweeperGameRow(a, b, c, d, e, safeSquare) }} /> :
-            <Grid array={createBlankGrid(columns, rows)} onClick={(column, row) => onClickPlayingFalse(column, row)} createRowFunc={(a, b, c, d, e) => { createBlankGameRow(a, b, c, d, e) }} />}    </div>)
+
+    const cleanUp = (arr, message) => {
+
+        for (let i = 0; i < rows; i++) {
+
+            for (let j = 0; j < columns; j++) {
+
+                const coord = [j, i]
+                revealSquareProp(coord, arr)
+
+            }
+
+
+        }
+
+        setStatusGrid(arr)
+
+
+
+        alert(`You ${message}!`)
+
+
+        // resetGrid()
+
+        return true
+    }
+
+    const playingOnClick = (coords, array) => {
+        let arr = array.slice()
+
+
+        const status = array[coords[1]][coords[0]].valueToDisplay
+
+        if (status == "Mine") {
+            if (cleanUp(arr, "lose")) { return }
+        }
+        else {
+            adjacentSquaresToReveal(coords, array).forEach(element => {
+                revealSquareProp(element, arr)
+            })
+        }
+
+        // status == "Mine" ? cleanUp(arr, "lose") : adjacentSquaresToReveal(coords, array).forEach(element => {
+        //     revealSquareProp(element, arr)
+        // });
+
+
+
+        if (checkForWin(revealSquareProp(coords, arr))) {
+
+            setStatusGrid(revealSquareProp(coords, arr)
+            )
+
+            if (cleanUp(arr, "win")) { return }
+        }
+
+        else {
+            setStatusGrid(revealSquareProp(coords, arr)
+            )
+
+        }
+    }
+
+    const onRightClick = (e, coords, array) => {
+        let arr = array.slice()
+
+        e.preventDefault()
+
+        setStatusGrid(rightClickedSquarePropToggle(coords, arr))
+
+
+    }
+
+    const initialRightClick = (e) => {
+        e.preventDefault()
+    }
+
+    return (<div className={"MineSweeperContainer"}>
+        {/* status Grid
+        <Grid array={statusGrid} tileType={"status"} />
+        revealed Grid
+        <Grid array={statusGrid} tileType={"revealed"} />
+
+        UI Grid */}
+        <MineSweeperGrid array={statusGrid} onClick={playing ? (coords) => playingOnClick(coords, statusGrid) : (safeSquare) => initialOnClick(safeSquare)} playing={playing} onContextMenu={playing ? (e, coords) => onRightClick(e, coords, statusGrid) : (e) => initialRightClick(e)} />
+        <button onClick={resetGrid}>Reset</button>
+
+    </div>)
 
 }
 

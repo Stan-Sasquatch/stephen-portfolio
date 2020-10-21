@@ -7,6 +7,7 @@ import {
 
 } from "react-router-dom";
 import HomePage from './Components/HomePage';
+import AboutPage from './Components/AboutPage';
 import WeatherBar from './Components/WeatherBar';
 import Project from './Components/Project';
 import Navbar from './Components/NavBar';
@@ -32,7 +33,7 @@ export default function App() {
 
         <Switch>
           <Route path="/about">
-            <WeatherBar town="Reading" countryISO="UK" />
+            <AboutPage />
           </Route>
           <Route path="/projects">
             <ProjectsRouter />

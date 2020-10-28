@@ -2,7 +2,8 @@
  .container-one{
  display: flex;
  justify-content: center;
- flex-direction: column;}
+ flex-direction: column;
+margin:20px}
 
  button {width:200px;
   margin: 0 auto}

@@ -1,30 +1,22 @@
-.flex-container-1{
-  display:flex;
-  flex-direction: column;
-  margin:auto;
-  
-}
-.flex-container-2{
-  display: flex;
-  
-  flex-direction: column;
-  justify-content: center;
-  
 
+.background{
+
+  height :100%;
+  width:100%;
+  background-color: #4CAF50;
+  clip-path: polygon(25% 0%, 100% 0, 100% 50%, 75% 100%, 0 100%, 0% 50%);
+  position:absolute;
+  z-index: -1;
 }
-h1{color:white;}
 img.profile-pic {
    
   margin:auto;
     border:5px solid black;
-   height: 275px;
-   width: 270px;
+   height: 412px;
+   width: 310px;
   }
 
-  .homePageParagraph{
-   margin:auto;
-    text-align: center
-  }
+ 
 
 
   

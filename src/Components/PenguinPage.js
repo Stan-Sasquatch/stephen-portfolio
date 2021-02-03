@@ -3,14 +3,14 @@ import '../CSS/PenguinPage.css';
 const PenguinPage = () => {
 
     const [colourSchemeState, setcolourScheme] = useState("penguin-one");
-
-    return (<div className="container-one"><Penguin colourScheme={colourSchemeState} />
-        <button onClick={() => setcolourScheme(colourSchemeState == "penguin-one" ? "penguin-two" : "penguin-one")}>change my colour!</button> </div>);
+    const penguinClick = () => setcolourScheme(colourSchemeState == "penguin-one" ? "penguin-two" : "penguin-one")
+    return (<div><Penguin penguinClick={penguinClick} colourScheme={colourSchemeState} />
+    </div>);
 }
 
 const Penguin = (props) => {
 
-    return (<div ><div className={"penguin " + props.colourScheme}>
+    return (<div ><div onClick={props.penguinClick} className={"penguin " + props.colourScheme}>
 
         <div className="penguin-bottom">
             <div className="right-hand"></div>

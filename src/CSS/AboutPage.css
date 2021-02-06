@@ -1,8 +1,38 @@
 .container-1{
-   width: 75%;
-   margin:10px;
+    
+
+        height :100%;
+        width:100%;
+        background-color: rgb(76, 175, 80);
+        clip-path: polygon(0 0, 75% 0%, 100% 50%, 100% 100%, 25% 100%, 0% 50%);
+        position:absolute;
+        z-index: -1;
+        display:flex;
+        justify-content: center;
+        background-image: url(../Utils/About_Page_Pic.jpg);
+        background-blend-mode:lighten;
+        background-size:cover;
 }
 
 .container-2{
-    align-self: auto;
+    color:black;
+    width: 800px;
+    font-size: 20px;
+    height :auto;
+   display:flex;
+   justify-content: center
+}
+
+.container-3{
+    font-size: 30px;
+    text-align:justify;
+
+}
+
+.about-page-pic{
+    margin:auto;
+   
+   height: 500px;
+   width: 888px;
+   
 }

@@ -1,20 +1,47 @@
-
 .background{
 
   height :100%;
   width:100%;
-  background-color: #4CAF50;
+  background-color: rgb(76, 175, 80);
   clip-path: polygon(25% 0%, 100% 0, 100% 50%, 75% 100%, 0 100%, 0% 50%);
   position:absolute;
   z-index: -1;
+  background-image: url(../Utils/home_Page_Pic.jpg);
+  background-blend-mode:lighten;
+  background-size:cover;
 }
+
 img.profile-pic {
    
   margin:auto;
-    border:5px solid black;
+    border:1px solid black;
    height: 412px;
    width: 310px;
   }
+
+
+  .list-container{
+    height :20%;
+    display:flex;
+    justify-content:center;
+    font-size: 20px;
+  }
+
+  .title{
+    display:flex;
+    justify-content:center;
+  }
+
+  .right-column{
+  display:flex;
+  flex-direction: column;
+    justify-content:center;}
+
+
+ 
+    
+  
+
 
  
 

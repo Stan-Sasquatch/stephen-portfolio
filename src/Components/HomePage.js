@@ -4,27 +4,57 @@ import '../CSS/HomePage.css';
 import PenguinPage from './PenguinPage';
 const HomePage = () => {
 
+    return (<div className="background">
+        <div className="title text-center row">
+            <h2 >Stephen's Portfolio </h2>
+        </div>
+        <div className="row">
+            <div className="col">
+            </div>
+            <div className="col">
+                <div className="list-container row">
 
-
-    return (<div className="background"><h1>Home</h1>
-        <h2 className="text-center">Website designed using React Version:{React.version}</h2>
-        <div className="text-center container-fluid">
-            <img className="profile-pic img-responsive" src={Profile_Pic} alt="Stephen at home" />
-
-            <div >
-
-
-                Hi, I'm Stephen. Welcome to my website! (that's me in the middle)
-                <br />
-                Please browse the projects tab to have a look at what i've been coding recently.
-                <br />
-                Have a look at the about tab for more info about me!
-                <PenguinPage />
+                    <ul>
+                        <div >
+                            <li >
+                                Background in Mathematics, Finance and Data Handling
+</li>
+                        </div>
+                        <div>
+                            <li>
+                                Proficient in HTML, CSS, JavaScript and React
+</li>
+                        </div>
+                        <div>
+                            <li>
+                                Passionate about self-improvement
+</li>
+                        </div>
+                        <div>
+                            <li>
+                                Motivated to put the work in to learn new technologies
+</li>
+                        </div>
+                    </ul>
+                </div>
             </div>
 
+            <div className="text-center container-fluid col right-column">
 
 
-        </div></div>);
+
+                <div className="row penguin">
+                    <PenguinPage />
+                </div>
+
+
+                <div className=" text-center"> Built Using React Version: {React.version}, bootstrap and more!</div>
+
+
+            </div>
+        </div>
+
+    </div>);
 }
 
 

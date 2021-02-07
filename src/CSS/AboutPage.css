@@ -14,27 +14,25 @@
       
       justify-content: center;
        
-        height: 500px;
-   width: 888px;
-        
+
        
 }
 
 .container-2{
     color:black;
-    width: 800px;
+   
     font-size: 20px;
     height :auto;
    display:flex;
    justify-content: center
 }
 
-.container-3{
+.p-text{
     font-size: 30px;
     text-align:justify;
-  width:888px;
+  padding:10px;
     /* background:rgb(39, 39, 39); */
-
+    color:white;
    
     display:flex;
 }

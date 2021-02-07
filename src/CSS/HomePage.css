@@ -21,10 +21,10 @@ img.profile-pic {
 
 
   .list-container{
-    height :20%;
-    display:flex;
-    justify-content:center;
+    
     font-size: 30px;
+    color: black;
+    justify-content:center;
     color: black;
   }
 

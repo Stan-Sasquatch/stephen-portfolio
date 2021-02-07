@@ -37,22 +37,23 @@ const HomePage = () => {
                 </ul>
             </div>
 
-            <div className="text-center container-fluid  right-column col-3">
-                <div className="penguin">
+
+        </div>
+        <div className="row">
+            <div className="col-3 text-center container-fluid  right-column">
+                <div className="penguin-pic">
                     <PenguinPage />
                 </div>
 
 
-                <div className=" text-center"> Built Using React Version: {React.version}, bootstrap and more!</div>
-
+                <div className="penguin-text text-center"> Built Using React Version: {React.version}, bootstrap and more!</div>
 
             </div>
+            <div className="col-6">
+            </div>
+            <div className="col-3 ">
 
-
-
-
-
-
+            </div>
 
         </div>
 

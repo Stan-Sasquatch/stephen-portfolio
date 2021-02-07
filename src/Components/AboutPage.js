@@ -18,8 +18,13 @@ const AboutPage = () => {
                 <p>I'm 28 years old, originally from Wokingham, with a degree in Mathematics from the University of Sheffield.
                 <br />
                 My background has led me towards the financial sector, where I currently work, but I have always gravitated to the technical/system side of the companies i've worked in.
-                Coding has been a hobby for me up until recently but I now feel i'm ready to transistion into a career in web development.</p>
-
+                Coding has been a hobby for me up until recently but I now feel i'm ready to transistion into a career in web development.
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                Reach me at <p><a href="mailto:stephenppercival@gmail.com">Stephenppercival@gmail.com</a></p></p>
             </div>
         </div></div><div className="p-text row">
             <div className="col-5">

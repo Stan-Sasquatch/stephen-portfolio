@@ -13,7 +13,7 @@ const HomePage = () => {
             <div className="col-3"></div>
             <div className="list-container text-center col-6">
 
-                <ul>
+                <ul id="homepage-list">
                     <div >
                         <li >
                             Background in Mathematics, Finance and Data Handling
@@ -36,7 +36,11 @@ const HomePage = () => {
                     </div>
                 </ul>
             </div>
+            <div className="col-3">
 
+                <div> Built Using React Version: {React.version}, bootstrap and more!</div>
+
+            </div>
 
         </div>
         <div className="row">
@@ -45,8 +49,6 @@ const HomePage = () => {
                     <PenguinPage />
                 </div>
 
-
-                <div className="penguin-text text-center"> Built Using React Version: {React.version}, bootstrap and more!</div>
 
             </div>
             <div className="col-6">

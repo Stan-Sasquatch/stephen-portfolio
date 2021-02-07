@@ -11,21 +11,14 @@
   background-size:cover;
 }
 
-img.profile-pic {
-   
-  margin:auto;
-    border:1px solid black;
-   height: 412px;
-   width: 310px;
-  }
-
 
   .list-container{
     
     font-size: 25px;
     color: black;
     justify-content:center;
-    
+    border:5px solid white;
+  background-color: rgba(118, 207, 248, 0.609)
   }
 
   .title{

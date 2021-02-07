@@ -34,7 +34,7 @@ const AboutPage = () => {
 </p>
             </div>
             <div className="col-7">
-                <video width="960" height="540" controls>
+                <video width="960" height="540" controls muted>
                     <source src={Climbing_Video} type="video/mp4" />
 
                     Your browser does not support the video tag.

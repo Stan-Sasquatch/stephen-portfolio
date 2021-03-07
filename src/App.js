@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import HomePage from './Components/HomePage';
 import AboutPage from './Components/AboutPage';
-import WeatherBar from './Components/WeatherBar';
+import WeatherPage from './Components/WeatherPage';
 import Project from './Components/Project';
 import Navbar from './Components/NavBar';
 import './CSS/App.css';
@@ -56,7 +56,7 @@ function ProjectsRouter() {
   const projectsArr = [
     { id: "Tile Game", text: "Tile Game", link: "/tilegame", component: () => { return <TileGame /> } },
     { id: "Minesweeper", text: "Minesweeper", link: "/minesweeper", component: () => { return <Minesweeper /> } },
-    { id: "Weather", text: "Weather", link: "/weather", component: () => { return <WeatherBar town="Reading" countryISO="UK" /> } }
+    { id: "Weather", text: "Weather", link: "/weather", component: () => { return <WeatherPage /> } }
   ]
 
   return (

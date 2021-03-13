@@ -26,9 +26,12 @@ function ProjectsRouter() {
   
     return (
       <div>
+
+          <div className="project-banner-container">
         <h2>Projects</h2>
         <Navbar linksArr={projectsArr} url={myURL} nested={true} />
-        <div>
+        </div>
+        <div className="project-container">
         <Switch>
           <Route exact path={path}>
             <h3>Please select a project.</h3>

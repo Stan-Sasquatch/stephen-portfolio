@@ -21,11 +21,14 @@ export default function App() {
 
   return (<div className="app-container">
     <HashRouter>
-      <div>
-        <Navbar linksArr={linksArr} nested={false} />
+      <div className="nav-container-1">
+      <div className="nav-container-2">
+        <Navbar className="sticky" linksArr={linksArr} nested={false} />
         </div>
 
-        <div>
+        </div>
+
+        <div className="switch-container">
         <Switch>
           <Route path="/about">
             <AboutPage />

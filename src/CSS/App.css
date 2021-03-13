@@ -2,9 +2,26 @@
  body {
     background:rgb(39, 39, 39);
   }  
- .app-container{color:white;}
-/* 
- p {color:white;}
- h1{color:white;}
-   h2 {color:white}
-   h3 {color:white;} */
+ .app-container{color:white;
+display:flex;
+flex-direction: column;
+height:auto;
+flex-wrap: wrap;
+}
+.nav-container-1{
+  display: flex;
+
+  position: fixed;
+  width: 100%;
+  background-color: #333;
+  
+}
+
+.switch-container{
+  padding-top: 52px;
+  display:flex;
+  } 
+  
+  
+
+

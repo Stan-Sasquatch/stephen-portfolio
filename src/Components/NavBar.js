@@ -5,7 +5,7 @@ import CustomLink from './CustomLink'
 const NavBar = (props) => {
 
     return (
-        <nav>
+        <nav className={props.className}>
             <ul className="NavBar">
                 {props.linksArr.map(linksObj => <CustomLink id={linksObj.id} text={linksObj.text} to={props.nested ? props.url + linksObj.link : linksObj.link} activeOnlyWhenExact={linksObj.activeOnlyWhenExact} />)}
 

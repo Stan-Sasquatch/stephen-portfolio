@@ -8,16 +8,9 @@ import {
 } from "react-router-dom";
 import HomePage from './Components/HomePage';
 import AboutPage from './Components/AboutPage';
-import WeatherPage from './Components/WeatherPage';
-import Project from './Components/Project';
+import ProjectsRouter from './Components/ProjectsRouter';
 import Navbar from './Components/NavBar';
 import './CSS/App.css';
-import CustomLink from './Components/CustomLink'
-import TileGame from './Projects/TileGameProject/TileGame'
-import PenguinPage from './Components/PenguinPage'
-import Minesweeper from './Projects/Minesweeper/Minesweeper'
-
-
 
 export default function App() {
 
@@ -26,11 +19,13 @@ export default function App() {
   { id: "projectsLink", text: "Projects", link: "/projects" }]
 
 
-  return (<div className="app">
+  return (<div className="app-container">
     <HashRouter>
       <div>
         <Navbar linksArr={linksArr} nested={false} />
+        </div>
 
+        <div>
         <Switch>
           <Route path="/about">
             <AboutPage />
@@ -42,34 +37,9 @@ export default function App() {
             <HomePage />
           </Route>
         </Switch>
-      </div>
+        </div>
     </HashRouter>
   </div>
-  );
-}
-
-function ProjectsRouter() {
-
-  let { path, url } = useRouteMatch();
-  let myURL = url
-
-  const projectsArr = [
-    { id: "Tile Game", text: "Tile Game", link: "/tilegame", component: () => { return <TileGame /> } },
-    { id: "Minesweeper", text: "Minesweeper", link: "/minesweeper", component: () => { return <Minesweeper /> } },
-    { id: "Weather", text: "Weather", link: "/weather", component: () => { return <WeatherPage /> } }
-  ]
-
-  return (
-    <div>
-      <h2>Projects</h2>
-      <Navbar linksArr={projectsArr} url={myURL} nested={true} />
-      <Switch>
-        <Route exact path={path}>
-          <h3>Please select a project.</h3>
-        </Route>
-        {projectsArr.map(projectObj => <Route path={path + projectObj.link} >{projectObj.component}</Route>)}
-      </Switch>
-    </div>
   );
 }
 

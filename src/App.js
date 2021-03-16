@@ -22,22 +22,24 @@ export default function App() {
   return (<div className="app-container">
     <HashRouter>
       <div className="nav-container-1">
-      <div className="nav-container-2">
-        <Navbar className="sticky" linksArr={linksArr} nested={false} />
+        <Navbar linksArr={linksArr} nested={false} />
         </div>
-
-        </div>
-
         <div className="switch-container">
         <Switch>
           <Route path="/about">
+            <div className="no-pic">
             <AboutPage />
+            </div>
           </Route>
           <Route path="/projects">
+          <div className="no-pic">
             <ProjectsRouter />
+            </div>
           </Route>
           <Route path="/">
+          <div className="home-page">
             <HomePage />
+            </div>
           </Route>
         </Switch>
         </div>

@@ -1,19 +1,16 @@
-.background{
 
-  height :100%;
-  width:100%;
-  background-color: rgb(76, 175, 80);
-  clip-path: polygon(25% 0%, 100% 0, 100% 50%, 75% 100%, 0 100%, 0% 50%);
-  position:absolute;
+.background{
+  
+   background-color: rgb(76, 175, 80);
   z-index: -1;
   background-image: url(../Utils/home_Page_Pic.jpg);
   background-blend-mode:lighten;
-  background-size:cover;
-  overflow: hidden
+  background-size: cover;
 }
 
 
-  .list-container{
+
+  .text-container{
     
     font-size: 25px;
     color: black;
@@ -21,6 +18,13 @@
     border:5px solid white;
   background-color: rgba(118, 207, 248, 0.609)
   }
+  .text-container aside{
+    height:100%;
+   
+  }
+
+
+
 
   .title{
     display:flex;
@@ -37,10 +41,16 @@
     
     padding:100px;
   }
-  
+
+
 
  
-    
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+  }   
   
 
 

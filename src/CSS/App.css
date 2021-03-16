@@ -1,12 +1,18 @@
 
- body {
-    background:rgb(39, 39, 39);
-  }  
+  body{
+    background-color:rgb(39, 39, 39);
+  }
+
+ 
+
  .app-container{color:white;
-display:flex;
+  width:100%;
+  
 flex-direction: column;
-height:auto;
-flex-wrap: wrap;
+max-width: unset;
+
+
+
 }
 .nav-container-1{
   display: flex;
@@ -14,12 +20,15 @@ flex-wrap: wrap;
   position: fixed;
   width: 100%;
   background-color: #333;
-  
+  z-index: 1;
 }
 
 .switch-container{
+  display: flex;
   padding-top: 52px;
-  display:flex;
+  width:100%;
+ 
+ 
   } 
   
   

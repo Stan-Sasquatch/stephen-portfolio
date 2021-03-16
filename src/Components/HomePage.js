@@ -13,7 +13,7 @@ const HomePage = () => {
                 </div>
                 <div className="row">
                     <div className="col-3 "></div>
-                    <div className="list-container text-center col-6">
+                    <div className="text-container text-center col-6">
 
                         <ul >
                             <div >
@@ -40,13 +40,13 @@ const HomePage = () => {
                     </div>
                     <div className="col-3">
 
-                        <div> Built Using React Version: {React.version}, bootstrap and more!</div>
+                <aside className="text-container">Built Using React Version: {React.version}, bootstrap and more!</aside>
 
                     </div>
 
                 </div>
                 <div className="row">
-                    <div className="col-3 text-center container-fluid  right-column">
+                    <div className="col-3 text-center right-column">
 
                         <div className="penguin-pic">
                             <PenguinPage />
@@ -64,7 +64,8 @@ const HomePage = () => {
 
 
 
-            </div> </div>);
+            </div> 
+           </div>);
 }
 
 

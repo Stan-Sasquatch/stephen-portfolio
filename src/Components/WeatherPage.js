@@ -16,124 +16,123 @@ const WeatherPage = () => {
         {
             city: "Uberlândia",
 
-            Country: "BR"
+            country: "BR"
         },
 
         {
             city: "Cologne",
 
-            Country: "DE"
+            country: "DE"
         },
 
         {
             city: "Safi",
 
-            Country: "MA"
+            country: "MA"
         },
 
         {
             city: "Utrecht",
 
-            Country: "NL"
+            country: "NL"
         },
 
         {
             city: "Yaoundé",
 
-            Country: "CM"
+            country: "CM"
         },
 
         {
             city: "Huaying",
 
-            Country: "CN"
+            country: "CN"
         },
 
         {
             city: "Jastrzębie Zdrój",
 
-            Country: "PL"
+            country: "PL"
         },
 
         {
             city: "Norwich"
             ,
 
-            Country: "UK"
+            country: "UK"
         },
 
         {
             city: "Houma",
 
-            Country: "CN"
+            country: "CN"
         },
 
         {
             city: "Keelung, Taiwan",
 
-            Country: "CN"
+            country: "CN"
         },
 
         {
             city: "Qitaihe",
 
-            Country: "CN"
+            country: "CN"
         },
 
         {
             city: "Bhilwara",
 
-            Country: "IN"
+            country: "IN"
         },
 
         {
             city: "Mulhouse",
 
-            Country: "FR"
+            country: "FR"
         },
 
         {
-            city: "Jiaozhou City",
+            city: "Jiaozhou",
 
-            Country: "CN"
+            country: "CN"
         },
 
         {
             city: "Bayamo",
 
-            Country: "CU"
+            country: "CU"
         },
 
         {
             city: "Naperville",
 
-            Country: "US"
+            country: "US"
         },
 
         {
             city: "Glendale, California",
 
-            Country: "US"
+            country: "US"
         },
 
         {
             city: "Masaya",
 
-            Country: "NI"
+            country: "NI"
         },
 
         {
             city: "Korhogo",
 
-            Country: "CI"
+            country: "CI"
         }
 
     ]
 
     const startingNum = Math.floor((Math.random() * 20))
 
-
-    const [townState, setTownState] = useState({ town: randomCities[startingNum].city, ISO: randomCities[startingNum].Country });
+    const [townState, setTownState] = useState({ town: randomCities[startingNum].city, ISO: randomCities[startingNum].country });
     const [userInputs, setUserInputs] = useState({ town: "", ISO: "" })
 
 
@@ -163,21 +162,19 @@ const WeatherPage = () => {
 
 
     }
-
     return (<div className="row">
 
 
-        <div className="col-6">
-            <WeatherBar town={townState.town} countryISO={townState.ISO} />
-            <div>Search the weather in a town or city!</div>
-            <WeatherSearchBar onSubmit={handleInputSubmit} onChange={onChange} />
-        </div>
-        <div className="col-6">
-            <WeatherBar town="Reading" countryISO="UK" />
-            <div>Weather where I am!</div>
-        </div>
+    <div className="col-6">
+        <WeatherBar town={townState.town} countryISO={townState.ISO} />
+        <div>Search the weather in a town or city!</div>
+        <WeatherSearchBar onSubmit={handleInputSubmit} onChange={onChange} />
+    </div>
+    <div className="col-6">
+        <WeatherBar town="Reading" countryISO="UK" />
+        <div>Weather where I am!</div>
+    </div>
 
-    </div>);
+</div>);
 }
-
 export default WeatherPage;

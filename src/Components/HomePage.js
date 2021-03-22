@@ -11,8 +11,8 @@ const HomePage = () => {
                     <h2 >Stephen's Portfolio </h2>
                 </div>
                 <div className="row">
-                    <div className="col-3"></div>
-                    <div className="text-container text-center col-6">
+                    <div className="col-12 col-sm-3"></div>
+                    <div className="text-container text-center col-12 col-sm-6">
 
                         <ul >
                             <div >
@@ -37,7 +37,7 @@ const HomePage = () => {
                             </div>
                         </ul>
                     </div>
-                    <div className="col-3">
+                    <div className="col-12 col-sm-3">
 
                 <aside className="text-container">
                     <div>

@@ -1,59 +1,42 @@
-.background{
-   background-color: rgb(76, 175, 80);
+.background {
+  background-color: rgb(76, 175, 80);
   background-image: url(../Utils/home_Page_Pic.jpg);
-  background-blend-mode:lighten;
+  background-blend-mode: lighten;
   background-size: cover;
-  
-  overflow:hidden;
-  min-height:1000px;
- 
+
+  overflow: hidden;
 }
 
-  .text-container{
-    font-size: 25px;
-    color: black;
-    justify-content:center;
-    border:5px solid white;
+.text-container {
+  font-size: 25px;
+  color: black;
+  justify-content: center;
+}
+
+aside.text-container {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 0;
+  margin: 0;
+}
+
+.title {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .background {
+    min-height: 1000px;
+  }
+  .text-container {
     border-radius: 15px;
-  background-color: rgba(118, 207, 248, 0.609);
-  height:200px;
-  padding:10px;
+    background-color: rgba(118, 207, 248, 0.609);
+    height: auto;
+    padding: 10px;
+    border: 5px solid white;
   }
-
-  aside.text-container {
-    height:auto;
-   border-right:0;
-   border-top-right-radius: 0;
-   border-bottom-right-radius:0;
-   padding-right: 0;
-   margin:0;
-
-  }
-
-
-
-
-  .title{
-    padding-top: 10px;
-    display:flex;
-    justify-content:center;
-    color: black;
-    
-
-  }
-
-
- 
-  @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    [class*="col-"] {
-      width: 100%;
-    }
-  }   
-  
-
-
- 
-
-
-  
+}
